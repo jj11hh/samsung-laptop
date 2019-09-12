@@ -291,7 +291,7 @@ static const struct sabi_config sabi_configs[] = {
 };
 
 /*
- * samsung-laptop/    - debugfs root directory
+ * samsung-laptop-dang/    - debugfs root directory
  *   f0000_segment    - dump f0000 segment
  *   command          - current command
  *   data             - current data
@@ -1304,7 +1304,7 @@ static int samsung_debugfs_init(struct samsung_laptop *samsung)
 {
 	struct dentry *dent;
 
-	samsung->debug.root = debugfs_create_dir("samsung-laptop", NULL);
+	samsung->debug.root = debugfs_create_dir("samsung-laptop-dang", NULL);
 	if (!samsung->debug.root) {
 		pr_err("failed to create debugfs directory");
 		goto error_debugfs;
