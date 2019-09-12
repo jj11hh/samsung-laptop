@@ -1,16 +1,13 @@
-ifeq ($(KERNELRELEASE), )
+.PHONY: install
 
-KERNELDIR := /lib/modules/$(shell uname -r)/build
+PWD := $(shell pwd)
 
-PWD :=$(shell pwd)
-default:
-	$(MAKE) -C $(KERNELDIR)  M=$(PWD) modules
-clean:
-	$(MAKE) -C $(KERNELDIR)  M=$(PWD) clean
-load:
-	insmod samsung-laptop.ko
-unload:
-	rmmod samsung-laptop
-else
-	obj-m := samsung-laptop.o
-endif
+install:
+	cp -r $(PWD)/samsung-laptop-dang-1.0 /usr/src
+	dkms add samsung-laptop-dang/1.0
+	dkms build samsung-laptop-dang/1.0
+	dkms install samsung-laptop-dang/1.0
+
+uninstall:
+	dkms remove samsung-laptop-dang/1.0 --all
+	rm -rf /usr/src/samsung-laptop-dang-1.0
