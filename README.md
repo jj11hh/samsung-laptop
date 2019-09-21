@@ -1,2 +1,2 @@
 # samsung-laptop
-a samsung-laptop module enabled on UEFI-based system.
+a samsung-laptop module that supports Samsung NP940X5N and NP940X5M
