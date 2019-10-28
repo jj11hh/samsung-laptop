@@ -249,8 +249,8 @@ static const struct sabi_config sabi_configs[] = {
 			.get_recovery_mode = 0xff,
 			.set_recovery_mode = 0xff,
 
-			.get_performance_level = 0x31,
-			.set_performance_level = 0x32,
+			.get_performance_level = 0x2c,
+			.set_performance_level = 0x2c,
 
 			.get_battery_life_extender = 0x65,
 			.set_battery_life_extender = 0x66,
@@ -272,11 +272,11 @@ static const struct sabi_config sabi_configs[] = {
 		.performance_levels = {
 			{
 				.name = "normal",
-				.value = 0,
+				.value = 1,
 			},
 			{
 				.name = "silent",
-				.value = 1,
+				.value = 0,
 			},
 			{
 				.name = "overclock",
@@ -385,6 +385,7 @@ static struct samsung_quirks samsung_np740u3e = {
 
 static struct samsung_quirks samsung_lid_handling = {
 	.lid_handling = true,
+		  .has_good_efi = true
 };
 
 static struct samsung_quirks samsung_np940x5n = {
@@ -1698,6 +1699,15 @@ static const struct dmi_system_id samsung_dmi_table[] __initconst = {
 	 .matches = {
 		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
 		DMI_MATCH(DMI_PRODUCT_NAME, "300V3Z/300V4Z/300V5Z"),
+		},
+	 .driver_data = &samsung_lid_handling,
+	},
+	{
+	 .callback = samsung_dmi_matched,
+	 .ident = "350V5C/351V5C/3540VC/3440VC",
+	 .matches = {
+		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
+		DMI_MATCH(DMI_PRODUCT_NAME, "350V5C/351V5C/3540VC/3440VC"),
 		},
 	 .driver_data = &samsung_lid_handling,
 	},
