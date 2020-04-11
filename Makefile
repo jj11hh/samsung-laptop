@@ -1,4 +1,5 @@
 .PHONY: install
+.PHONY: uninstall
 
 PWD := $(shell pwd)
 
